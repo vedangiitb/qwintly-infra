@@ -11,24 +11,18 @@ on:
 jobs:
   migrate:
     runs-on: ubuntu-latest
-
     environment: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Install Supabase CLI
-        run: npm install -g supabase
-
-      - name: Link Supabase project
-        run: supabase link --project-ref $PROJECT_REF
-        env:
-          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
-          PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
 
       - name: Apply migrations
-        run: supabase db push
+        run: supabase db push --project-ref ${{ secrets.SUPABASE_PROJECT_REF }}
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
           SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
