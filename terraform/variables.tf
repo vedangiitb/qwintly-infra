@@ -60,7 +60,7 @@ variable "managed_secret_ids" {
   type = set(string)
   default = [
     "supabase-url",
-    "supabase-service-role-key",
+    "supabase-secret-key",
     "upstash-redis-rest-token-gen-events",
     "upstash-redis-rest-url-gen-events",
     "gemini-api-key"
@@ -101,7 +101,7 @@ variable "builder_secret_env_vars" {
       secret_id = "supabase-url"
     }
     SUPABASE_SECRET_KEY = {
-      secret_id = "supabase-service-role-key"
+      secret_id = "supabase-secret-key"
     }
   }
 }
@@ -119,7 +119,7 @@ variable "deployer_secret_env_vars" {
       secret_id = "supabase-url"
     }
     SUPABASE_SECRET_KEY = {
-      secret_id = "supabase-service-role-key"
+      secret_id = "supabase-secret-key"
     }
   }
 }
