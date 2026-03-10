@@ -1,0 +1,66 @@
+{
+  "Modules": [
+    { "Key": "", "Source": "", "Dir": "." },
+    {
+      "Key": "builder_sa",
+      "Source": "./service_account",
+      "Dir": "service_account"
+    },
+    {
+      "Key": "builder_templates_bucket",
+      "Source": "./gcs_bucket",
+      "Dir": "gcs_bucket"
+    },
+    {
+      "Key": "code_index_bucket",
+      "Source": "./gcs_bucket",
+      "Dir": "gcs_bucket"
+    },
+    {
+      "Key": "deployer_sa",
+      "Source": "./service_account",
+      "Dir": "service_account"
+    },
+    {
+      "Key": "generated_sites_cloudbuild_sa",
+      "Source": "./service_account",
+      "Dir": "service_account"
+    },
+    {
+      "Key": "generated_sites_runtime_sa",
+      "Source": "./service_account",
+      "Dir": "service_account"
+    },
+    {
+      "Key": "project_snapshots_bucket",
+      "Source": "./gcs_bucket",
+      "Dir": "gcs_bucket"
+    },
+    {
+      "Key": "qwintly_builder",
+      "Source": "./cloud_run_job",
+      "Dir": "cloud_run_job"
+    },
+    {
+      "Key": "qwintly_deployer",
+      "Source": "./cloud_run_job",
+      "Dir": "cloud_run_job"
+    },
+    {
+      "Key": "qwintly_wg_worker",
+      "Source": "./cloud_run_service",
+      "Dir": "cloud_run_service"
+    },
+    {
+      "Key": "webgen_dead_letter_topic",
+      "Source": "./pubsub",
+      "Dir": "pubsub"
+    },
+    { "Key": "webgen_topic", "Source": "./pubsub", "Dir": "pubsub" },
+    {
+      "Key": "worker_sa",
+      "Source": "./service_account",
+      "Dir": "service_account"
+    }
+  ]
+}
