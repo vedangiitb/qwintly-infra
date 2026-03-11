@@ -1,0 +1,50 @@
+name: Terraform Deploy
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+    paths:
+      - "terraform/**"
+  workflow_dispatch:
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
+
+    defaults:
+      run:
+        working-directory: terraform
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Authenticate GCP
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY_QWINTLY }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: |
+          terraform init \
+            -backend-config="bucket=${{ vars.TF_STATE_BUCKET_QWINTLY }}" \
+            -backend-config="prefix=terraform"
+
+      - name: Terraform Plan
+        run: |
+          terraform plan \
+            -var="project_id=${{ secrets.GCP_PROJECT_ID_QWINTLY }}" \
+            -var="generated_sites_project_id=${{ secrets.GCP_PROJECT_ID_GEN_SITES }}" \
+            -var="environment=${{ github.ref_name == 'main' && 'prod' || 'dev' }}"
+
+      - name: Terraform Apply
+        run: |
+          terraform apply -auto-approve \
+            -var="project_id=${{ secrets.GCP_PROJECT_ID_QWINTLY }}" \
+            -var="generated_sites_project_id=${{ secrets.GCP_PROJECT_ID_GEN_SITES }}" \
+            -var="environment=${{ github.ref_name == 'main' && 'prod' || 'dev' }}"
