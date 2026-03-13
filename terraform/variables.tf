@@ -63,7 +63,8 @@ variable "managed_secret_ids" {
     "supabase-secret-key",
     "upstash-redis-rest-token-gen-events",
     "upstash-redis-rest-url-gen-events",
-    "gemini-api-key"
+    "gemini-api-key",
+    "pubsub-subscription"
   ]
 }
 
@@ -84,6 +85,9 @@ variable "worker_secret_env_vars" {
     }
     UPSTASH_REDIS_REST_URL_GEN_EVENTS = {
       secret_id = "upstash-redis-rest-url-gen-events"
+    }
+    PUBSUB_SUBSCRIPTION = {
+      secret_id = "pubsub-subscription"
     }
   }
 }
