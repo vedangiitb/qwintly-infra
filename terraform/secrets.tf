@@ -42,3 +42,14 @@ resource "google_secret_manager_secret_iam_member" "deployer" {
   role      = "roles/secretmanager.secretAccessor"
   member    = module.deployer_sa.member
 }
+
+resource "google_secret_manager_secret_iam_member" "qwintly_main" {
+  for_each = toset([
+    for secret in values(var.qwintly_main_secret_env_vars) : secret.secret_id
+  ])
+
+  project   = var.project_id
+  secret_id = google_secret_manager_secret.managed[each.value].secret_id
+  role      = "roles/secretmanager.secretAccessor"
+  member    = module.qwintly_main_sa.member
+}

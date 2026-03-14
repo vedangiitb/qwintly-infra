@@ -61,10 +61,12 @@ variable "managed_secret_ids" {
   default = [
     "supabase-url",
     "supabase-secret-key",
+    "supabase-publishable-key",
     "upstash-redis-rest-token-gen-events",
     "upstash-redis-rest-url-gen-events",
     "gemini-api-key",
-    "pubsub-subscription"
+    "pubsub-subscription",
+    "pubsub-topic-web-gen",
   ]
 }
 
@@ -124,6 +126,33 @@ variable "deployer_secret_env_vars" {
     }
     SUPABASE_SECRET_KEY = {
       secret_id = "supabase-secret-key"
+    }
+  }
+}
+
+variable "qwintly_main_secret_env_vars" {
+  type = map(object({
+    secret_id = string
+    version   = optional(string, "latest")
+  }))
+  default = {
+    GEMINI_API_KEY = {
+      secret_id = "gemini-api-key"
+    }
+    NEXT_PUBLIC_SUPABASE_URL = {
+      secret_id = "supabase-url"
+    }
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY = {
+      secret_id = "supabase-publishable-key"
+    }
+    UPSTASH_REDIS_REST_TOKEN_GEN_EVENTS = {
+      secret_id = "upstash-redis-rest-token-gen-events"
+    }
+    UPSTASH_REDIS_REST_URL_GEN_EVENTS = {
+      secret_id = "upstash-redis-rest-url-gen-events"
+    }
+    PUBSUB_TOPIC_WEB_GEN = {
+      secret_id = "pubsub-topic-web-gen"
     }
   }
 }
