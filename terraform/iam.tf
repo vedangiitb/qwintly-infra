@@ -5,6 +5,13 @@ resource "google_pubsub_subscription_iam_member" "worker_subscriber" {
   member       = module.worker_sa.member
 }
 
+resource "google_pubsub_topic_iam_member" "webgen_publisher" {
+  project = var.project_id
+  topic   = module.webgen_topic.topic_name
+  role    = "roles/pubsub.publisher"
+  member  = module.qwintly_main_sa.member
+}
+
 resource "google_storage_bucket_iam_member" "builder_templates_viewer" {
   bucket = module.builder_templates_bucket.name
   role   = "roles/storage.objectViewer"

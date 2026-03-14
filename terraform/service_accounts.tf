@@ -36,6 +36,18 @@ module "deployer_sa" {
   ]
 }
 
+module "qwintly_main_sa" {
+  source       = "./service_account"
+  project_id   = var.project_id
+  account_id   = "qwintly-main-sa"
+  display_name = "Qwintly Main Project Service Account"
+  depends_on   = [google_project_service.main]
+  project_roles = [
+    "roles/logging.logWriter",
+    "roles/monitoring.metricWriter",
+  ]
+}
+
 module "generated_sites_cloudbuild_sa" {
   source     = "./service_account"
   project_id = var.generated_sites_project_id
