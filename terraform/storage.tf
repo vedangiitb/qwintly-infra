@@ -12,7 +12,10 @@ module "project_snapshots_bucket" {
   source   = "./gcs_bucket"
   name     = local.project_snapshots_bucket_name
   location = upper(var.region)
-  depends_on = [google_project_service.main]
+  providers = {
+    google = google.generated_sites
+  }
+  depends_on = [google_project_service.generated_sites]
   labels = merge(local.common_labels, {
     component = "project-snapshots"
   })

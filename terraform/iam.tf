@@ -19,6 +19,7 @@ resource "google_storage_bucket_iam_member" "builder_templates_viewer" {
 }
 
 resource "google_storage_bucket_iam_member" "builder_snapshots_admin" {
+  provider = google.generated_sites
   bucket = module.project_snapshots_bucket.name
   role   = "roles/storage.objectAdmin"
   member = module.builder_sa.member
@@ -31,6 +32,7 @@ resource "google_storage_bucket_iam_member" "builder_code_index_admin" {
 }
 
 resource "google_storage_bucket_iam_member" "deployer_snapshots_admin" {
+  provider = google.generated_sites
   bucket = module.project_snapshots_bucket.name
   role   = "roles/storage.objectAdmin"
   member = module.deployer_sa.member
@@ -43,6 +45,7 @@ resource "google_storage_bucket_iam_member" "deployer_code_index_admin" {
 }
 
 resource "google_storage_bucket_iam_member" "cloudbuild_snapshots_viewer" {
+  provider = google.generated_sites
   bucket = module.project_snapshots_bucket.name
   role = "roles/storage.objectViewer"
   member = module.generated_sites_cloudbuild_sa.member
