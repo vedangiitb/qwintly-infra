@@ -14,6 +14,7 @@ module "project_snapshots_bucket" {
   project_id = var.generated_sites_project_id
   name     = local.project_snapshots_bucket_name
   location = upper(var.region)
+  force_destroy = true
   providers = {
     google = google.generated_sites
   }
