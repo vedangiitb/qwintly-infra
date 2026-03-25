@@ -1,5 +1,6 @@
 module "builder_templates_bucket" {
   source   = "./gcs_bucket"
+  project_id = var.project_id
   name     = local.builder_templates_bucket_name
   location = upper(var.region)
   depends_on = [google_project_service.main]
@@ -10,6 +11,7 @@ module "builder_templates_bucket" {
 
 module "project_snapshots_bucket" {
   source   = "./gcs_bucket"
+  project_id = var.generated_sites_project_id
   name     = local.project_snapshots_bucket_name
   location = upper(var.region)
   providers = {
@@ -23,6 +25,7 @@ module "project_snapshots_bucket" {
 
 module "code_index_bucket" {
   source   = "./gcs_bucket"
+  project_id = var.project_id
   name     = local.code_index_bucket_name
   location = upper(var.region)
   depends_on = [google_project_service.main]
