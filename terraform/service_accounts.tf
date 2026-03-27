@@ -79,3 +79,15 @@ module "generated_sites_runtime_sa" {
     "roles/monitoring.metricWriter",
   ]
 }
+
+module "gateway_service_sa" {
+  source     = "./service_account"
+  project_id = var.project_id
+  account_id   = "qwintly-gateway-service-sa"
+  display_name = "Gateway Service Service Account"
+  depends_on = [google_project_service.main]
+  project_roles = [
+    "roles/logging.logWriter",
+    "roles/monitoring.metricWriter",
+  ]
+}
