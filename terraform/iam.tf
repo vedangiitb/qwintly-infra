@@ -90,3 +90,11 @@ resource "google_service_account_iam_member" "cloudbuild_use_generated_sites_run
   role               = "roles/iam.serviceAccountUser"
   member             = module.generated_sites_cloudbuild_sa.member
 }
+
+resource "google_project_iam_member" "deployer_generated_sites_project_iam_admin" {
+  provider = google.generated_sites
+
+  project = var.generated_sites_project_id
+  role    = "roles/resourcemanager.projectIamAdmin"
+  member  = module.deployer_sa.member
+}
