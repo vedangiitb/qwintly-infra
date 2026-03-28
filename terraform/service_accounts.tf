@@ -9,6 +9,7 @@ module "worker_sa" {
     "roles/logging.viewer",
     "roles/monitoring.metricWriter",
     "roles/run.jobsExecutorWithOverrides",
+    "roles/run.viewer",
   ]
 }
 
