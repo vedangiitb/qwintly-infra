@@ -35,6 +35,8 @@ module "webgen_topic" {
   enable_exactly_once_delivery             = false
   topic_message_retention_duration         = "3600s"
   subscription_message_retention_duration = "3600s"
+  push_endpoint                            = "${trimsuffix(var.webgen_push_endpoint, "/")}/pubsub/push"
+  push_oidc_service_account_email          = module.pubsub_push_sa.email
 
   dead_letter_policy = {
     dead_letter_topic     = module.webgen_dead_letter_topic.topic_id

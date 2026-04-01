@@ -13,6 +13,14 @@ module "worker_sa" {
   ]
 }
 
+module "pubsub_push_sa" {
+  source       = "./service_account"
+  project_id   = var.project_id
+  account_id   = "qwintly-pubsub-push-sa"
+  display_name = "Qwintly Pub/Sub Push Service Account"
+  depends_on   = [google_project_service.main]
+}
+
 module "builder_sa" {
   source       = "./service_account"
   project_id   = var.project_id

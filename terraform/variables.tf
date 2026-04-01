@@ -31,6 +31,10 @@ variable "webgen_subscription_name" {
   default = "webgen-topic-sub"
 }
 
+variable "webgen_push_endpoint" {
+  type = string
+}
+
 variable "webgen_dead_letter_topic_name" {
   type    = string
   default = "webgen-topic-dlq"
