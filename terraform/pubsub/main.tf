@@ -58,4 +58,21 @@ resource "google_pubsub_subscription" "subscription" {
       maximum_backoff = retry_policy.value.maximum_backoff
     }
   }
+
+  dynamic "push_config" {
+    for_each = var.push_endpoint == null ? [] : [1]
+
+    content {
+      push_endpoint = var.push_endpoint
+      attributes    = var.push_attributes
+
+      dynamic "oidc_token" {
+        for_each = var.push_oidc_service_account_email == null ? [] : [var.push_oidc_service_account_email]
+
+        content {
+          service_account_email = oidc_token.value
+        }
+      }
+    }
+  }
 }

@@ -1,8 +1,24 @@
-resource "google_pubsub_subscription_iam_member" "worker_subscriber" {
-  project      = var.project_id
-  subscription = module.webgen_topic.subscription_name
-  role         = "roles/pubsub.subscriber"
-  member       = module.worker_sa.member
+data "google_project" "main" {
+  project_id = var.project_id
+}
+
+data "google_cloud_run_service" "wg_worker" {
+  name     = "qwintly-wg-worker"
+  location = "asia-south1"
+  project  = var.project_id
+}
+
+resource "google_service_account_iam_member" "pubsub_push_token_creator" {
+  service_account_id = module.pubsub_push_sa.name
+  role               = "roles/iam.serviceAccountTokenCreator"
+  member             = "service-${data.google_project.main.number}@gcp-sa-pubsub.iam.gserviceaccount.com"
+}
+
+resource "google_cloud_run_service_iam_member" "wg_worker_invoker" {
+  service  = data.google_cloud_run_service.wg_worker.name
+  location = data.google_cloud_run_service.wg_worker.location
+  role     = "roles/run.invoker"
+  member   = module.pubsub_push_sa.member
 }
 
 resource "google_pubsub_topic_iam_member" "webgen_publisher" {

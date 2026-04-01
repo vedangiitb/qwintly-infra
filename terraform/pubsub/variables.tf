@@ -90,3 +90,18 @@ variable "retry_policy" {
   })
   default = null
 }
+
+variable "push_endpoint" {
+  type    = string
+  default = null
+}
+
+variable "push_oidc_service_account_email" {
+  type    = string
+  default = null
+}
+
+variable "push_attributes" {
+  type    = map(string)
+  default = {}
+}
