@@ -11,7 +11,7 @@ data "google_cloud_run_service" "wg_worker" {
 resource "google_service_account_iam_member" "pubsub_push_token_creator" {
   service_account_id = module.pubsub_push_sa.name
   role               = "roles/iam.serviceAccountTokenCreator"
-  member             = "service-${data.google_project.main.number}@gcp-sa-pubsub.iam.gserviceaccount.com"
+  member             = "serviceAccount:service-${data.google_project.main.number}@gcp-sa-pubsub.iam.gserviceaccount.com"
 }
 
 resource "google_cloud_run_service_iam_member" "wg_worker_invoker" {
