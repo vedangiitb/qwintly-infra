@@ -65,6 +65,7 @@ variable "managed_secret_ids" {
   default = [
     "supabase-url",
     "supabase-secret-key",
+    "supabase-secret-key-dev",
     "supabase-publishable-key",
     "upstash-redis-rest-token-gen-events",
     "upstash-redis-rest-url-gen-events",
@@ -167,11 +168,11 @@ variable "gateway_service_secret_env_vars" {
     version   = optional(string, "latest")
   }))
   default = {
-    NEXT_PUBLIC_SUPABASE_URL = {
-      secret_id = "supabase-url"
-    }
-    SUPABASE_SECRET_KEY = {
+    SUPABASE_SECRET_KEY_PROD = {
       secret_id = "supabase-secret-key"
+    }
+    SUPABASE_SECRET_KEY_DEV = {
+      secret_id = "supabase-secret-key-dev"
     }
   }
   
