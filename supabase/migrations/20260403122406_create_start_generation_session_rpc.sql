@@ -1,4 +1,4 @@
-﻿-- ============================================================
+-- ============================================================
 -- RPC: start_generation_session
 -- Purpose:
 -- Atomically start a generation session by:
