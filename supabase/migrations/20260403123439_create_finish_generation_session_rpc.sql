@@ -1,4 +1,4 @@
-﻿-- ============================================================
+-- ============================================================
 -- RPC: finish_generation_session
 -- Purpose:
 -- Atomically finish a generation session by:
