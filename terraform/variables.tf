@@ -65,7 +65,6 @@ variable "managed_secret_ids" {
   default = [
     "supabase-secret-key",
     "supabase-secret-key-dev",
-    "supabase-publishable-key",
     "upstash-redis-rest-token-gen-events",
     "gemini-api-key",
   ]
