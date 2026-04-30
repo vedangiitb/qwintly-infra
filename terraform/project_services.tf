@@ -2,6 +2,7 @@ locals {
   main_project_services = toset([
     "artifactregistry.googleapis.com",
     "cloudbuild.googleapis.com",
+    "cloudkms.googleapis.com",
     "iam.googleapis.com",
     "logging.googleapis.com",
     "pubsub.googleapis.com",

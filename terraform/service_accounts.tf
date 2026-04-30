@@ -100,3 +100,17 @@ module "gateway_service_sa" {
     "roles/monitoring.metricWriter",
   ]
 }
+
+resource "google_kms_crypto_key_iam_member" "builder_sa_user_api_keys_encrypter_decrypter" {
+  crypto_key_id = "projects/${var.project_id}/locations/global/keyRings/qwintly-keyring/cryptoKeys/user-api-keys"
+  role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+  member        = module.builder_sa.member
+  depends_on    = [google_project_service.main]
+}
+
+resource "google_kms_crypto_key_iam_member" "deployer_sa_user_api_keys_encrypter_decrypter" {
+  crypto_key_id = "projects/${var.project_id}/locations/global/keyRings/qwintly-keyring/cryptoKeys/user-api-keys"
+  role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+  member        = module.deployer_sa.member
+  depends_on    = [google_project_service.main]
+}
