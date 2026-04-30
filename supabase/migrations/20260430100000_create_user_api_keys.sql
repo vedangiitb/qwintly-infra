@@ -47,8 +47,6 @@ update to authenticated using (auth.uid () = user_id)
 with
     check (
         auth.uid () = user_id
-        and user_id = old.user_id
-        and provider = old.provider
     );
 
 create policy "Users can delete own api keys" on public.user_api_keys for delete to authenticated using (auth.uid () = user_id);
