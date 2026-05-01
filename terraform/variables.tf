@@ -97,6 +97,9 @@ variable "builder_secret_env_vars" {
     SUPABASE_SECRET_KEY = {
       secret_id = "supabase-secret-key"
     }
+    UPSTASH_REDIS_REST_TOKEN_GEN_EVENTS = {
+      secret_id = "upstash-redis-rest-token-gen-events"
+    }
   }
 }
 
@@ -111,6 +114,9 @@ variable "deployer_secret_env_vars" {
     }
     SUPABASE_SECRET_KEY = {
       secret_id = "supabase-secret-key"
+    }
+    UPSTASH_REDIS_REST_TOKEN_GEN_EVENTS = {
+      secret_id = "upstash-redis-rest-token-gen-events"
     }
   }
 }
