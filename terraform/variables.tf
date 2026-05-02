@@ -67,6 +67,7 @@ variable "managed_secret_ids" {
     "supabase-secret-key-dev",
     "upstash-redis-rest-token-gen-events",
     "gemini-api-key",
+    "publish-secret",
   ]
 }
 
@@ -82,6 +83,9 @@ variable "worker_secret_env_vars" {
     UPSTASH_REDIS_REST_TOKEN_GEN_EVENTS = {
       secret_id = "upstash-redis-rest-token-gen-events"
     }
+    PUBLISH_SECRET = {
+      secret_id = "publish-secret"
+    }
   }
 }
 
@@ -91,14 +95,14 @@ variable "builder_secret_env_vars" {
     version   = optional(string, "latest")
   }))
   default = {
-    GEMINI_API_KEY = {
-      secret_id = "gemini-api-key"
-    }
     SUPABASE_SECRET_KEY = {
       secret_id = "supabase-secret-key"
     }
     UPSTASH_REDIS_REST_TOKEN_GEN_EVENTS = {
       secret_id = "upstash-redis-rest-token-gen-events"
+    }
+    PUBLISH_SECRET = {
+      secret_id = "publish-secret"
     }
   }
 }
@@ -109,14 +113,14 @@ variable "deployer_secret_env_vars" {
     version   = optional(string, "latest")
   }))
   default = {
-    GEMINI_API_KEY = {
-      secret_id = "gemini-api-key"
-    }
     SUPABASE_SECRET_KEY = {
       secret_id = "supabase-secret-key"
     }
     UPSTASH_REDIS_REST_TOKEN_GEN_EVENTS = {
       secret_id = "upstash-redis-rest-token-gen-events"
+    }
+    PUBLISH_SECRET = {
+      secret_id = "publish-secret"
     }
   }
 }
@@ -132,6 +136,9 @@ variable "qwintly_main_secret_env_vars" {
     }
     UPSTASH_REDIS_REST_TOKEN_GEN_EVENTS = {
       secret_id = "upstash-redis-rest-token-gen-events"
+    }
+    WORKER_PUBLISH_SECRET = {
+      secret_id = "publish-secret"
     }
   }
 }
