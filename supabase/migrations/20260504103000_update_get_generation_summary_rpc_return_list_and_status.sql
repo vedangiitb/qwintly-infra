@@ -5,6 +5,10 @@
 -- - Include generation session status as genStatus (task_status)
 -- ============================================================
 
+-- Postgres cannot change a function's return type via CREATE OR REPLACE.
+-- Drop the prior signature first, then recreate.
+drop function if exists public.get_generation_summary(uuid, uuid);
+
 create or replace function public.get_generation_summary(
     p_chat_id uuid,
     p_gen_id uuid
@@ -32,4 +36,3 @@ as $$
       and gs.id = p_gen_id
     group by gs.status;
 $$;
-
