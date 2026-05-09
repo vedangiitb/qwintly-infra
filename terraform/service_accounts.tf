@@ -57,6 +57,19 @@ module "qwintly_main_sa" {
   ]
 }
 
+module "qwintly_preview_renderer_sa" {
+  source       = "./service_account"
+  project_id   = var.project_id
+  account_id   = "qwintly-preview-renderer-sa"
+  display_name = "Qwintly Preview Renderer Service Account"
+  depends_on   = [google_project_service.main]
+  project_roles = [
+    "roles/logging.logWriter",
+    "roles/monitoring.metricWriter",
+  ]
+}
+
+
 module "generated_sites_cloudbuild_sa" {
   source     = "./service_account"
   project_id = var.generated_sites_project_id
