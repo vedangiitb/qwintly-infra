@@ -57,7 +57,7 @@ module "webgen_topic" {
 
   dead_letter_policy = {
     dead_letter_topic     = module.webgen_dead_letter_topic.topic_id
-    max_delivery_attempts = 3
+    max_delivery_attempts = 5
   }
 
   retry_policy = {
@@ -91,7 +91,7 @@ module "webdeploy_topic" {
 
   dead_letter_policy = {
     dead_letter_topic     = module.webdeploy_dead_letter_topic.topic_id
-    max_delivery_attempts = 3
+    max_delivery_attempts = 5
   }
 
   retry_policy = {
