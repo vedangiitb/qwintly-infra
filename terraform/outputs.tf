@@ -6,6 +6,14 @@ output "webgen_subscription_name" {
   value = module.webgen_topic.subscription_name
 }
 
+output "webdeploy_topic_name" {
+  value = module.webdeploy_topic.topic_name
+}
+
+output "webdeploy_subscription_name" {
+  value = module.webdeploy_topic.subscription_name
+}
+
 output "builder_templates_bucket_name" {
   value = module.builder_templates_bucket.name
 }

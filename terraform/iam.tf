@@ -28,6 +28,13 @@ resource "google_pubsub_topic_iam_member" "webgen_publisher" {
   member  = module.qwintly_main_sa.member
 }
 
+resource "google_pubsub_topic_iam_member" "webdeploy_publisher" {
+  project = var.project_id
+  topic   = module.webdeploy_topic.topic_name
+  role    = "roles/pubsub.publisher"
+  member  = module.qwintly_main_sa.member
+}
+
 resource "google_storage_bucket_iam_member" "builder_templates_viewer" {
   bucket = module.builder_templates_bucket.name
   role   = "roles/storage.objectViewer"
