@@ -45,6 +45,26 @@ variable "webgen_dead_letter_subscription_name" {
   default = "webgen-topic-dlq-sub"
 }
 
+variable "webdeploy_topic_name" {
+  type    = string
+  default = "webdeploy-topic"
+}
+
+variable "webdeploy_subscription_name" {
+  type    = string
+  default = "webdeploy-topic-sub"
+}
+
+variable "webdeploy_dead_letter_topic_name" {
+  type    = string
+  default = "webdeploy-topic-dlq"
+}
+
+variable "webdeploy_dead_letter_subscription_name" {
+  type    = string
+  default = "webdeploy-topic-dlq-sub"
+}
+
 variable "builder_templates_bucket_name" {
   type    = string
   default = "builder-templates"
