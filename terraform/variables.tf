@@ -88,6 +88,7 @@ variable "managed_secret_ids" {
     "upstash-redis-rest-token-gen-events",
     "gemini-api-key",
     "publish-secret",
+    "unsplash-api-key"
   ]
 }
 
@@ -124,6 +125,9 @@ variable "builder_secret_env_vars" {
     PUBLISH_SECRET = {
       secret_id = "publish-secret"
     }
+    UNSPLASH_API_KEY = {
+      secret_id = "unsplash-api-key"
+    }
   }
 }
 
@@ -141,6 +145,9 @@ variable "deployer_secret_env_vars" {
     }
     PUBLISH_SECRET = {
       secret_id = "publish-secret"
+    }
+    UNSPLASH_API_KEY = {
+      secret_id = "unsplash-api-key"
     }
   }
 }
