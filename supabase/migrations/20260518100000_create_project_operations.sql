@@ -19,7 +19,7 @@ create index project_operations_gen_id_idx on public.project_operations (gen_id)
 
 create index project_operations_gen_route_created_idx on public.project_operations (gen_id, route, created_at desc);
 
-create index project_operations_gen_route_status_idx on public.project_operations (gen_id, route, status);
+create index project_operations_gen_status_idx on public.project_operations (gen_id , status);
 
 -- =========================
 -- ENABLE RLS
