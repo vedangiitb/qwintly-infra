@@ -1,7 +1,7 @@
 -- =========================
 -- ENUM: op_status
 -- =========================
-create type public.op_status as enum ('queued', 'applied',);
+create type public.op_status as enum ('queued', 'applied');
 -- =========================
 -- TABLE: project_operations
 -- =========================
