@@ -54,6 +54,18 @@ resource "google_storage_bucket_iam_member" "builder_code_index_admin" {
   member = module.builder_sa.member
 }
 
+resource "google_storage_bucket_iam_member" "builder_agent_logs_object_creator" {
+  bucket = module.agent_logs_bucket.name
+  role   = "roles/storage.objectCreator"
+  member = module.builder_sa.member
+}
+
+resource "google_storage_bucket_iam_member" "deployer_agent_logs_object_creator" {
+  bucket = module.agent_logs_bucket.name
+  role   = "roles/storage.objectCreator"
+  member = module.deployer_sa.member
+}
+
 resource "google_storage_bucket_iam_member" "deployer_snapshots_admin" {
   provider = google.generated_sites
   bucket = module.project_snapshots_bucket.name

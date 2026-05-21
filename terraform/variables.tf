@@ -80,6 +80,11 @@ variable "code_index_bucket_name" {
   default = "code-index"
 }
 
+variable "agent_logs_bucket_name" {
+  type    = string
+  default = "agent-logs"
+}
+
 variable "managed_secret_ids" {
   type = set(string)
   default = [
