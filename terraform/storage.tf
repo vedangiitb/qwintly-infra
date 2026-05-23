@@ -33,3 +33,14 @@ module "code_index_bucket" {
     component = "code-index"
   })
 }
+
+module "agent_logs_bucket" {
+  source   = "./gcs_bucket"
+  project_id = var.project_id
+  name     = local.agent_logs_bucket_name
+  location = upper(var.region)
+  depends_on = [google_project_service.main]
+  labels = merge(local.common_labels, {
+    component = "agent-logs"
+  })
+}
