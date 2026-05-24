@@ -133,6 +133,9 @@ variable "builder_secret_env_vars" {
     UNSPLASH_API_KEY = {
       secret_id = "unsplash-api-key"
     }
+    GEMINI_API_KEY = {
+      secret_id = "gemini-api-key"
+    }
   }
 }
 
@@ -153,6 +156,9 @@ variable "deployer_secret_env_vars" {
     }
     UNSPLASH_API_KEY = {
       secret_id = "unsplash-api-key"
+    }
+    GEMINI_API_KEY = {
+      secret_id = "gemini-api-key"
     }
   }
 }
