@@ -38,15 +38,15 @@ jobs:
       - name: Terraform Plan
         run: |
           terraform plan \
-            -var="project_id=${{ secrets.GCP_PROJECT_ID_QWINTLY }}" \
-            -var="generated_sites_project_id=${{ secrets.GCP_PROJECT_ID_GEN_SITES }}" \
+            -var="project_id=${{ vars.GCP_PROJECT_ID_QWINTLY }}" \
+            -var="generated_sites_project_id=${{ vars.GCP_PROJECT_ID_GEN_SITES }}" \
             -var="environment=${{ github.ref_name == 'main' && 'prod' || 'dev' }}" \
             -var="webgen_push_endpoint=${{ vars.WORKER_PUSH_ENDPOINT }}"
 
       - name: Terraform Apply
         run: |
           terraform apply -auto-approve \
-            -var="project_id=${{ secrets.GCP_PROJECT_ID_QWINTLY }}" \
-            -var="generated_sites_project_id=${{ secrets.GCP_PROJECT_ID_GEN_SITES }}" \
+            -var="project_id=${{ vars.GCP_PROJECT_ID_QWINTLY }}" \
+            -var="generated_sites_project_id=${{ vars.GCP_PROJECT_ID_GEN_SITES }}" \
             -var="environment=${{ github.ref_name == 'main' && 'prod' || 'dev' }}" \
             -var="webgen_push_endpoint=${{ vars.WORKER_PUSH_ENDPOINT }}"
