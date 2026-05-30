@@ -93,7 +93,8 @@ variable "managed_secret_ids" {
     "upstash-redis-rest-token-gen-events",
     "gemini-api-key",
     "publish-secret",
-    "unsplash-api-key"
+    "unsplash-api-key",
+    "git-token"
   ]
 }
 
@@ -195,4 +196,16 @@ variable "gateway_service_secret_env_vars" {
     }
   }
   
+}
+
+variable "docs_secret_env_vars" {
+  type = map(object({
+    secret_id = string
+    version   = optional(string, "latest")
+  }))
+  default = {
+    GIT_TOKEN = {
+      secret_id = "git-token"
+    }
+  }
 }

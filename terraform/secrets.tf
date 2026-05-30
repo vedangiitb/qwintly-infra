@@ -64,3 +64,14 @@ resource "google_secret_manager_secret_iam_member" "gateway_service" {
   role      = "roles/secretmanager.secretAccessor"
   member    = module.gateway_service_sa.member
 }
+
+resource "google_secret_manager_secret_iam_member" "docs" {
+  for_each = toset([
+    for secret in values(var.docs_secret_env_vars) : secret.secret_id
+  ])
+
+  project   = var.project_id
+  secret_id = google_secret_manager_secret.managed[each.value].secret_id
+  role      = "roles/secretmanager.secretAccessor"
+  member    = module.docs_sa.member
+}

@@ -114,6 +114,19 @@ module "gateway_service_sa" {
   ]
 }
 
+module "docs_sa" {
+  source       = "./service_account"
+  project_id   = var.project_id
+  account_id   = "qwintly-docs-sa"
+  display_name = "Qwintly Docs Service Account"
+  depends_on   = [google_project_service.main]
+  project_roles = [
+    "roles/logging.logWriter",
+    "roles/monitoring.metricWriter",
+  ]
+}
+
+
 resource "google_kms_crypto_key_iam_member" "builder_sa_user_api_keys_encrypter_decrypter" {
   crypto_key_id = "projects/${var.project_id}/locations/global/keyRings/qwintly-keyring/cryptoKeys/user-api-keys"
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
