@@ -182,22 +182,6 @@ variable "qwintly_main_secret_env_vars" {
   }
 }
 
-variable "gateway_service_secret_env_vars" {
-  type = map(object({
-    secret_id = string
-    version   = optional(string, "latest")
-  }))
-  default = {
-    SUPABASE_SECRET_KEY_PROD = {
-      secret_id = "supabase-secret-key"
-    }
-    SUPABASE_SECRET_KEY_DEV = {
-      secret_id = "supabase-secret-key-dev"
-    }
-  }
-  
-}
-
 variable "docs_secret_env_vars" {
   type = map(object({
     secret_id = string
