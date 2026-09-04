@@ -44,3 +44,18 @@ variable "lifecycle_rules" {
   }))
   default = []
 }
+
+variable "kms_key_name" {
+  type    = string
+  default = null
+}
+
+variable "log_bucket" {
+  type    = string
+  default = null
+}
+
+variable "log_object_prefix" {
+  type    = string
+  default = null
+}
