@@ -1,6 +1,5 @@
 variable "kms_key_name" {
-  type    = string
-  default = null
+  type = string
 }
 
 variable "log_bucket" {
