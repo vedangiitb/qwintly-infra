@@ -41,11 +41,12 @@ jobs:
           GCP_PROJECT_ID_GEN_SITES: ${{ vars.GCP_PROJECT_ID_GEN_SITES }}
           REF_NAME: ${{ github.ref_name }}
           WORKER_PUSH_ENDPOINT: ${{ vars.WORKER_PUSH_ENDPOINT }}
+          TF_ENVIRONMENT: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
         run: |
           terraform plan \
             -var="project_id=$GCP_PROJECT_ID_QWINTLY" \
             -var="generated_sites_project_id=$GCP_PROJECT_ID_GEN_SITES" \
-            -var="environment=${{ github.ref_name == 'main' && 'prod' || 'dev' }}" \
+            -var="environment=$TF_ENVIRONMENT" \
             -var="webgen_push_endpoint=$WORKER_PUSH_ENDPOINT"
 
       - name: Terraform Apply
@@ -54,9 +55,10 @@ jobs:
           GCP_PROJECT_ID_GEN_SITES: ${{ vars.GCP_PROJECT_ID_GEN_SITES }}
           REF_NAME: ${{ github.ref_name }}
           WORKER_PUSH_ENDPOINT: ${{ vars.WORKER_PUSH_ENDPOINT }}
+          TF_ENVIRONMENT: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
         run: |
           terraform apply -auto-approve \
             -var="project_id=$GCP_PROJECT_ID_QWINTLY" \
             -var="generated_sites_project_id=$GCP_PROJECT_ID_GEN_SITES" \
-            -var="environment=${{ github.ref_name == 'main' && 'prod' || 'dev' }}" \
+            -var="environment=$TF_ENVIRONMENT" \
             -var="webgen_push_endpoint=$WORKER_PUSH_ENDPOINT"
