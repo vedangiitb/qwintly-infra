@@ -10,6 +10,21 @@ resource "google_storage_bucket" "bucket" {
     enabled = var.versioning_enabled
   }
 
+  dynamic "encryption" {
+    for_each = var.kms_key_name != null ? [var.kms_key_name] : []
+    content {
+      default_kms_key_name = encryption.value
+    }
+  }
+
+  dynamic "logging" {
+    for_each = var.logging_bucket != null ? [var.logging_bucket] : []
+    content {
+      log_bucket = logging.value
+      log_object_prefix = var.logging_prefix
+    }
+  }
+
   dynamic "lifecycle_rule" {
     for_each = var.lifecycle_rules
 
